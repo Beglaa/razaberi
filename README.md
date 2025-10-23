@@ -5,6 +5,7 @@
 [![Tests](https://img.shields.io/badge/tests-278%20files-green.svg)](#testing)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Coverage](https://img.shields.io/badge/features-complete-brightgreen.svg)](#features)
+[![DeepWiki](https://img.shields.io/badge/docs-DeepWiki-blue.svg)](https://deepwiki.com/Beglaa/razaberi)
 
 **AI-Assisted Development**: This project demonstrates a modern development approach combining AI capabilities with human expertise. The entire codebase—including implementation, comprehensive test suite, and documentation—was developed through "AI-Driven TDD with Developer-in-the-Loop" methodology, where AI tools generate code and documentation under continuous developer review and refinement. Representing three months of work across three major iterations, this baseline release (v0.1) establishes the foundational architecture and feature set, with further refinement and real-world validation needed to mature the library for production use.
 
@@ -1220,6 +1221,49 @@ match result:
 # Result(kind: rkError, message: m, code: c)
 # Result(kind: rkLoading)
 ```
+
+**Nested Implicit Syntax**:
+
+The implicit syntax also works seamlessly with nested variant objects:
+
+```nim
+# Define nested variant types
+type
+  DataKind2 = enum dkInt, dkString, dkFloat
+  DataValue2 = object
+    case kind: DataKind2
+    of dkString: str_val: string
+    of dkInt: int_val: int
+    of dkFloat: float_val: float
+
+  DataKind = enum Text, Number, Nested
+  DataValue = object
+    case kind: DataKind
+    of Text: text_val: string
+    of Number: number_val: int
+    of Nested: nested_val: DataValue2
+
+# Create nested variant instance - explicit constructor syntax
+let data = DataValue(
+  kind: Nested,
+  nested_val: DataValue2(kind: dkString, str_val: "nested_implicit")
+)
+
+# Pattern match with nested implicit syntax - clean and concise!
+match data:
+  DataValue(Nested(DataValue2(dkString("nested_implicit")))):
+    "Success: Nested implicit syntax!"
+  DataValue(Nested(DataValue2(dkString(value)))):
+    "Nested string: " & value
+  DataValue(Nested(DataValue2(dkInt(n)))):
+    "Nested int: " & $n
+  _: "Other pattern"
+
+# The nested implicit pattern expands to:
+# DataValue(kind: Nested, nested_val: DataValue2(kind: dkString, str_val: "nested_implicit"))
+```
+
+This syntax works with arbitrary nesting depth and any discriminator naming convention.
 
 **Why Learn Manual Variants First?**
 
