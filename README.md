@@ -54,16 +54,17 @@ atlas update razaberi
 # Remove package
 atlas remove razaberi
 ```
+- Look atlas docs: https://github.com/nim-lang/atlas
 
 ### Usage
 
 ```nim
-import pattern_matching
+import razaberi/[pattern_matching, variant_dsl, union_type]
 
 # Or import specific modules
-import pattern_matching_func
-import variant_dsl
-import union_type
+import razaberi/[pattern_matching]
+import razaberi/[variant_dsl]
+import razaberi/[union_type]
 ```
 
 **Requirements**: Nim 2.2 or higher, ARC/ORC memory management
