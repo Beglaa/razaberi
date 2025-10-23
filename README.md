@@ -30,14 +30,45 @@ let result = match response:
 
 ## Installation
 
+### Atlas Package Manager (Recommended)
+
 ```bash
-# Manual installation
-git clone https://github.com/your-repo/nim-pattern-matching
-cd nim-pattern-matching
-nimble install
+atlas use https://github.com/Beglaa/razaberi
+```
+
+This command will:
+- Clone the razaberi package to your workspace
+- Update your workspace configuration
+- Create/update nim.cfg and .nimble files
+- Make razaberi available to your project
+
+### Workspace Management
+
+```bash
+# List installed packages
+atlas list
+
+# Update razaberi to latest version
+atlas update razaberi
+
+# Remove package
+atlas remove razaberi
+```
+
+### Usage
+
+```nim
+import pattern_matching
+
+# Or import specific modules
+import pattern_matching_func
+import variant_dsl
+import union_type
 ```
 
 **Requirements**: Nim 2.2 or higher, ARC/ORC memory management
+
+**Note**: Atlas manages dependencies at the workspace level. The `atlas.workspace` file tracks all packages, and packages are stored in the local `packages/` directory.
 
 ## Quick Start
 
