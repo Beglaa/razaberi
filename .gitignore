@@ -1,0 +1,51 @@
+# Nim compiled files
+*.exe
+*.dll
+*.so
+*.dylib
+pattern_matching
+pattern_matching_func
+union_type
+variant_dsl
+construct_metadata
+pattern_validation
+
+# Test executables
+test_*
+*_test
+
+# Nim cache
+nimcache/
+nimblecache/
+
+# Atlas dependencies
+deps/
+packages/
+
+# macOS metadata files
+._*
+.DS_Store
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Build artifacts
+*.o
+*.a
+*.lib
+
+# Documentation build
+htmldocs/
+
+# Temporary files
+*.tmp
+*.bak
+*.log
+
+# Lock files (optional - uncomment if you want to track them)
+# atlas.lock
+# nimble.lock
