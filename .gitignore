@@ -10,9 +10,14 @@ variant_dsl
 construct_metadata
 pattern_validation
 
-# Test executables
-test_*
+# Test executables (compiled binaries only, keep .nim source files)
+# Note: These patterns exclude compiled test binaries but NOT .nim test source files
+test/*/test_*
+!test/**/*.nim
+test/test_*
+!test/test_*.nim
 *_test
+!*_test.nim
 
 # Nim cache
 nimcache/
